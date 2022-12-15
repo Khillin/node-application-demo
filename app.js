@@ -1,4 +1,4 @@
-const log = require('./logger.js');
+const Logger = require('./logger.js');
 const path = require('path');
 const os = require('os');
 const fs = require('fs');
@@ -26,12 +26,21 @@ fs.readdir('./',function(err,files){
 
 // events module
 
-const emitter = new EventEmitter();
+// const emitter = new EventEmitter();
 
-///register a request
-emitter.on('messageLogged',function(){
-    console.log('Listener called');
+
+
+//class extends eventemitter
+
+const logger = new Logger();
+
+//register a request
+logger.on('messageLogged',(args)=> {
+    console.log('Listener called',args);
 });
 
-///raise a request
-emitter.emit('messageLogged');
+logger.log('module loaded successfully' );
+
+
+
+

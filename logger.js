@@ -1,7 +1,13 @@
-var url = 'https://www.naukri.com/mnjuser/recommendedjobs'
+var url = 'https://www.naukri.com/mnjuser/recommendedjobs';
+const EventEmitter = require('events');
 
-function log(message){
-    console.log(message);
+class Logger extends EventEmitter{
+    log(message){
+        console.log(message);
+
+        ///raise a request
+        this.emit('messageLogged', {id: 1, url:'http://'});
+    }
 }
 
-module.exports = log;
+module.exports = Logger;
